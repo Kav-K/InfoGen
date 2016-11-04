@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONParse {
+	public static JSONObject json;
 	private static String readAll(Reader rd) throws IOException {
 	    StringBuilder sb = new StringBuilder();
 	    int cp;
@@ -34,10 +35,29 @@ public class JSONParse {
 	  }
 
 	  public static void init() throws IOException, JSONException {
-	    try { JSONObject json = readJsonFromUrl("http://api.namefake.com/"); } catch (Exception e) {
+	    try {  json = readJsonFromUrl("http://api.namefake.com/"); 
+	    //calls here
+	    
+	    } catch (Exception e) {
 	    	System.out.println("Failed");
+	    	System.exit(0);
 	    }
 	    
 	    
+	  }
+	  public static String getProperty(String i) throws IOException, JSONException {
+		  String b;
+		  try {
+			  b = json.getString(i);
+			  return b;
+		  } catch (Exception e) {
+			  e.printStackTrace();
+			  //TODO better error handling
+			  return null;
+		  }
+		  
+		  
+		  
+		  
 	  }
 }
